@@ -1,0 +1,60 @@
+.nav-center{
+    position: relative;
+    width: 300px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.bg{
+    background:url('/static/img/background.jpg') no-repeat;
+    width: 380px;
+    height: 110px;
+    display:block;
+    background-size:contain;
+    padding-left: 40%;
+    padding-top: 5%;
+}
+.headPicture{
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.middleHeadPicture{
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.smallHeadPicture{
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.bordeShadow{
+    box-shadow:5px 2px 6px #2c2c2c
+}
+.items{
+    min-height: 80px;
+}
+.themeColor{
+    background-color: #ecf0f1;
+}
+.message{
+    margin-top: 8px;
+}
+.commentDiv{
+    margin-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 730px;
+}
+.hand{
+    cursor:pointer;
+}
