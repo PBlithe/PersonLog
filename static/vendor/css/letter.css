@@ -11,6 +11,10 @@
     margin-top: 10px;
     margin-bottom: 5px;
     height: 785px;
+    overflow-y:auto;
+}
+.mycontent::-webkit-scrollbar{
+    display:none
 }
 .inputBody{
     clear:both;
@@ -30,7 +34,7 @@
     float: left;
 }
 .sender div:nth-of-type(2){
-    background-color: aquamarine;
+    background-color: rgb(229, 229, 229);
     float: left;
     margin: 0 20px 10px 15px;
     padding: 10px 10px 10px 0px;
@@ -51,7 +55,7 @@
 }
 .receiver div:nth-of-type(2){
     float:right;
-    background-color: gold;
+    background-color: rgb(18, 183, 245);
     margin: 0 10px 10px 20px;
     padding: 10px 0px 10px 10px;
     border-radius:7px;
@@ -62,7 +66,7 @@
     width:0px;  
     border-width:8px;  
     border-style:solid;  
-    border-color:transparent aquamarine transparent transparent;  
+    border-color:transparent rgb(229, 229, 229) transparent transparent;  
     position: relative;
     left:-16px;
     top:3px;
@@ -73,7 +77,7 @@
     width:0px;  
     border-width:8px;  
     border-style:solid;  
-    border-color:transparent transparent transparent gold;  
+    border-color:transparent transparent transparent rgb(18, 183, 245);  
     position: relative;
     right:-16px;
     top:3px;
