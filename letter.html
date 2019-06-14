@@ -57,11 +57,11 @@
                     <div class="col-lg-5 left ">
                       <div class="mylist themeColor">
                           <div class="row">
-                              <div class="col-lg-4 text-center hand">消息</div>
-                              <div class="col-lg-4 text-center hand">好友</div>
-                              <div class="col-lg-4 text-center hand">动态</div>
+                              <div class="col-lg-4 text-center hand" id="current">消息</div>
+                              <div class="col-lg-4 text-center hand" id="friend">好友</div>
+                              <div class="col-lg-4 text-center hand" id="moment">动态</div>
                           </div>
-                          <div class="currentBody">
+                          <div class="currentBody" id="currentBody">
                             <div class="current hand">
                                 <div class="current_list">
                                     <img class="middlePicture " src="static/img/user2.jpg"/>
@@ -103,6 +103,46 @@
 
                           </div>
                           
+                          <div class="friendBody" id="friendBody">
+                            <div class="friend hand">
+                                <div class="friend_list">
+                                    <img class="middlePicture " src="static/img/user4.jpg"/>
+                                </div>
+                                <div>
+                                    <span class="row text-primary">韩东然</span>
+                                    <span class="row text-secondary">计算机专业出身的金融从业者</span>
+                                </div>
+                              </div>
+    
+                              <div class="friend hand">
+                                <div class="friend_list">
+                                    <img class="middlePicture " src="static/img/user5.jpg"/>
+                                </div>
+                                <div>
+                                    <span class="row text-primary">宏桑</span>
+                                    <span class="row text-secondary"></span>
+                                </div>
+                              </div>
+    
+                              <div class="friend hand">
+                                <div class="friend_list">
+                                    <img class="middlePicture " src="static/img/user6.jpg"/>
+                                </div>
+                                <div>
+                                    <span class="row text-primary">寂寂若离</span>
+                                    <span class="row text-secondary">公众号：若离成长笔记</span>
+                                </div>
+                              </div>
+                              <div class="friend hand">
+                                <div class="friend_list">
+                                    <img class="middlePicture" src="static/img/user7.jpg"/>
+                                </div>
+                                <div>
+                                    <span class="row text-primary">浅哲</span>
+                                    <span class="row text-secondary">公众号：我只想让你的感情从此不再兵荒马乱</span>
+                                </div>
+                              </div>
+                          </div>
                       </div>
                       
                     </div>
@@ -288,6 +328,15 @@
               $(document).ready(function(){
                 $('#contentBody').scrollTop( $('#contentBody')[0].scrollHeight);
                 //$('#scroll_div').scrollLeft( $('#scroll_div')[0].scrollWidth);
+                $('#friendBody').hide();
+              });
+              $('#current').click(function(){
+                  $('#currentBody').show();
+                  $('#friendBody').hide();
+              });
+              $('#friend').click(function(){
+                  $('#currentBody').hide();
+                  $('#friendBody').show();
               });
             </script>
     </body>
