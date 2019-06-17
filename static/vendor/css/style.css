@@ -84,3 +84,12 @@
     margin-right:0px;
     padding-left: 48px;
 }
+.commentPopup{
+    z-index: 9999;
+    position: absolute;
+    top:80px;
+    left: 350px;
+    width: 400px;
+    height: 300px;
+    overflow-y: auto;
+}

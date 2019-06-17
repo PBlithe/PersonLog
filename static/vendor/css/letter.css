@@ -3,6 +3,7 @@
     margin-left: 20px;
 }
 .right{
+
 }
 .mycontent{
     padding-top: 10px;
@@ -16,6 +17,25 @@
 .mycontent::-webkit-scrollbar{
     display:none
 }
+.mylist{
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 826px;
+}
+.current{
+    padding-top: 10px;
+    clear: both;
+}
+.current_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
 .inputBody{
     clear:both;
 }
@@ -23,8 +43,52 @@
     float: left;
     width: 89%;
 }
-
-
+.middlePicture{
+    width: 50px;
+    height: 50px;
+    border: none;
+    overflow: hidden;
+}
+.currentBody{
+    overflow-y: auto;
+}
+.currentBody::-webkit-scrollbar{
+    display:none
+}
+.friend{
+    padding-top: 10px;
+    clear: both;
+}
+.friendBody{
+    overflow-y: auto;
+}
+.friendBody::-webkit-scrollbar{
+    display: none;
+}
+.friend_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
+.homeFriend{
+    padding-top: 10px;
+    clear: both;
+}
+.homeFriendBody{
+    overflow-y: auto;
+}
+.homeFriendBody::-webkit-scrollbar{
+    display: none;
+}
+.homeFriend_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
 
 
 .sender{
