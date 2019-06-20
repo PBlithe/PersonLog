@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.core.dao.DailyDao">
+	
+	
+	<!-- 添加日志-->
+	 <insert id="createDaily" parameterType="daily">
+	    insert into rizhi(
+	                   
+	                     daily_author,
+	                     daily_details,                           
+	                     daily_createtime,
+	                     user_id,
+	                     daily_picture,
+	                     privacy
+	                     
+	             )
+	             values(
+	            
+	                    #{daily_author},
+	                    #{daily_details},
+	                    #{daily_createtime},
+	                 	#{user_id},
+	                 	#{daily_picture},
+	                 	#{privacy}
+	            )
+	</insert> 
+	
+	
+	
+	<!-- 查询日志 -->
+     <select id="selectDailyList" parameterType="Integer"  resultType="daily">
+        select * from rizhi where user_id = #{user_id} order by daily_id desc
+    </select>
+
+	
+	
+	<!-- 删除日志 -->
+	<delete id="deleteDaily" parameterType="Integer">
+	    delete from rizhi where daily_id=#{id}
+	</delete>
+
+	<select id="findFriendDaily" parameterType="Integer"  resultType="daily">
+		select * from rizhi where user_id = #{user_id} and privacy = '0' order by daily_id desc
+	</select>
+</mapper>
