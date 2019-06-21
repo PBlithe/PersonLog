@@ -1,5 +1,6 @@
 package com.core.web.controller;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -111,6 +112,32 @@ public class DailyController {
 		        return "FAIL";			
 		    }
 		} 
-	    
-	    
+	    @RequestMapping("/notice.action")
+	    @ResponseBody
+	    public List<User> notice(HttpSession session) {
+		//System.out.println("tttt");
+		User user = (User)session.getAttribute("USER_SESSION");
+		List<Integer> requestList = friendService.findFriendRequest(user.getUser_id());
+		List<User> userList = new ArrayList<User>();
+		for(int i=0;i<requestList.size();i++) {
+		    User u = new User();
+		    u.setUser_name(userService.findUserName(requestList.get(i)));
+		    u.setUser_id(requestList.get(i));
+		    userList.add(u);
+		}
+		return userList;
+	    }
+	    @RequestMapping("/read.action")
+	    @ResponseBody
+	    public boolean read(HttpSession session) {
+		User user = (User)session.getAttribute("USER_SESSION");
+		List<Integer> requestList = friendService.findFriendRequest(user.getUser_id());
+		if(requestList != null) {
+		    for(int i=0;i<requestList.size();i++) {
+			friendService.deleteFriendRequest(requestList.get(i));
+		    }
+		    return true;
+		}
+		return false;
+	    }
 }

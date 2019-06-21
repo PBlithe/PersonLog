@@ -47,7 +47,7 @@
                     <a class="nav-link" href="#"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><button class="btn btn-outline-success" type="button" id="comment1">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<span class="badge badge-light">4</span></button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-outline-success" type="button" id="comment1">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<span class="badge badge-light" id="send_number"></span></button></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath }/letter/list.action"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
@@ -84,11 +84,14 @@
 
               </div>
             </nav>
-            <div class="commentPopup themeColor" id="commentPopup">
-              <div class=""><span class="text-info">缘是南柯一梦</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
-              <div class=""><span class="text-info">欲盖弥彰</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
-              <div class=""><span class="text-info">hbw</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
-              <div class=""><span class="text-info">世辞</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+            <div class="commentPopup themeColor" id="commentPopup" tabindex='-1'>
+            <!-- 
+            		<div class=""><span class="text-info">缘是南柯一梦</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">欲盖弥彰</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">hbw</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">世辞</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+             -->
+              
             </div>
 
             <div class="container">
@@ -318,9 +321,22 @@
               });
               $('#comment1').focus(function(){
                 $('#commentPopup').show();
+                $('#commentPopup').focus();
               });
-              $('#comment1').blur(function(){
-                $('#commentPopup').hide();
+              $('#commentPopup').blur(function(){
+            	  //console.log("消失");
+            	  $.ajax({
+	        	        type : "get",
+	        	        url : "<%=basePath%>read.action",
+	        	        dataType:"json",
+	        	        success : function(data){
+	        	        	$("#commentPopup").html("");
+	        	        	$("#send_number").html("");
+	        	        	$('#commentPopup').hide();
+	        	        },
+	        	        error : function(){
+	        	        }
+	        	    })
               });
               
             </script>
@@ -403,6 +419,53 @@
 		        	        	/*showFriend();*/
 		        	        	document.getElementById('friend_id').value="";
 		        	        	$('#search').modal('hide');
+		        	        }
+		        	    })
+		            }
+		            window.onload = function(){
+		            	//console.log("wzs");
+		            	$.ajax({
+		        	        type : "get",
+		        	        url : "<%=basePath%>notice.action",
+		        	        dataType:"json",
+		        	        success : function(data){
+		        	        	notice(data);
+		        	        },
+		        	        error : function(){
+		        	        	/*showFriend();*/
+		        	        	/*document.getElementById('friend_id').value="";
+		        	        	$('#search').modal('hide');*/
+		        	        }
+		        	    })
+		            }
+		            function notice(data){
+		            	var i;
+        	        	var html = "";
+        	        	if(data.length!=0)
+        	        		$("#send_number").html(data.length);
+        	        	//console.log(html);
+        	        	for(i=0;i<data.length;i++){
+        	        		var msg = data[i].user_id;
+        	        		//console.log(msg);
+        	        		html += `<div class=""><span class="text-info hand">`+data[i].user_name+`</span><span>&nbsp;&nbsp;请求添加好友&nbsp;&nbsp;</span><span href="#" class="text-info hand" onclick=agree(`+msg+`)>同意</span><span style="display:none">`+data[i].user_id+`</span></div>`;
+        	        	}
+        	        	//console.log(html);
+        	        	$("#commentPopup").html(html);
+		            }
+		            function agree(friend_id){
+		            	console.log(friend_id);
+		            	$.ajax({
+		        	        type : "post",
+		        	        url : "<%=basePath%>agree.action",
+		        	        dataType:"json",
+		        	        data: {"friend_id":friend_id},
+		        	        success : function(data){
+		        	        	//notice(data);
+		        	        },
+		        	        error : function(){
+		        	        	/*showFriend();*/
+		        	        	/*document.getElementById('friend_id').value="";
+		        	        	$('#search').modal('hide');*/
 		        	        }
 		        	    })
 		            }

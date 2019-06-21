@@ -18,4 +18,10 @@ public interface FriendDao {
 	public	int addUser(Integer id);
 	
 	public int addFriendRequest(@Param("from_id") Integer from_id,@Param("to_id") Integer to_id);
+	
+	public List<Integer> findFriendRequest(Integer to_id);
+	
+	public int deleteFriendRequest(Integer from_id);
+	
+	public int addFriend(@Param("owner_id")Integer owner_id,@Param("friend_id")Integer friend_id);
 }

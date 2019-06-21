@@ -92,4 +92,17 @@ public class FriendController {
 	    }
 	    return "FALSE";
 	}
+	
+	@RequestMapping("/agree.action")
+	@ResponseBody
+	public String agree(String friend_id,HttpSession session) {
+	    
+	    Integer f = Integer.parseInt(friend_id);
+	    User user = (User) session.getAttribute("USER_SESSION");
+	    int rows = friendService.addFriend(user.getUser_id(),f);
+	    if(rows>0) {
+		return "TRUE";
+	    }
+	    return "FALSE";
+	}
 }

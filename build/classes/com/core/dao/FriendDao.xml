@@ -41,4 +41,27 @@
 			'0'
 		)
 	</insert>
+	
+	<select id="findFriendRequest" parameterType="Integer"  resultType="Integer">
+		select from_id from addfriend where to_id = #{to_id} and agree = '0';
+	</select>
+	
+	<delete id="deleteFriendRequest" parameterType="Integer">
+	    delete from addfriend where from_id=#{from_id}
+	</delete>
+	
+	<insert id="addFriend" parameterType="Integer" >
+			insert into friends(
+	                   
+	                     owner_id,
+	                     friend_id
+	                     
+	             )
+	             values(
+	             
+	                    #{owner_id},
+	                    #{friend_id}
+	                    
+	            )
+	</insert>
 </mapper>

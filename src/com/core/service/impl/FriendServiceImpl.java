@@ -45,6 +45,23 @@ public class FriendServiceImpl implements FriendService {
 	public int addFriendRequest(Integer from_id, Integer to_id) {
 	    // TODO Auto-generated method stub
 	    return friendDao.addFriendRequest(from_id, to_id);
+	}
+
+	@Override
+	public List<Integer> findFriendRequest(Integer to_id) {
+	    return friendDao.findFriendRequest(to_id);
+	}
+
+	@Override
+	public int deleteFriendRequest(Integer to_id) {
+	    // TODO Auto-generated method stub
+	    return friendDao.deleteFriendRequest(to_id);
+	}
+
+	@Override
+	public int addFriend(Integer owner_id,Integer friend_id) {
+	    
+	    return friendDao.addFriend(owner_id,friend_id);
 	}   
 	    
 }
