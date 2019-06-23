@@ -110,7 +110,7 @@
                           <span class="text-center">10</span>
                         </div>
 
-                        <div class="col-lg-4 m-auto hand" >
+                        <div class="col-lg-4 m-auto hand"  onclick="dailyfriend()">
                             <div class="row m-auto">好友</div>
                             <span class="text-center">25</span>
                         </div>
@@ -403,6 +403,10 @@
 	        	        error : function(){
 	        	        }
 	        	    });
+				}
+				
+				function dailyfriend(){
+					window.location.href = "<%=basePath %>dailyFriend.action";
 				}
 			</script>
     </body>
