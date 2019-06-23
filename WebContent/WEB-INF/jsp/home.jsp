@@ -21,6 +21,7 @@
 
         <link href="<%=basePath%>static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<%=basePath%>static/vendor/css/style.css" rel="stylesheet"/>
+        <link href="<%=basePath%>static/vendor/css/letter.css" rel="stylesheet"/>
         <script src="<%=basePath%>static/vendor/js/jquery-3.4.1.min.js"></script>
         <script src="<%=basePath%>static/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -109,7 +110,7 @@
                           <span class="text-center">10</span>
                         </div>
 
-                        <div class="col-lg-4 m-auto hand">
+                        <div class="col-lg-4 m-auto hand" >
                             <div class="row m-auto">好友</div>
                             <span class="text-center">25</span>
                         </div>
@@ -192,7 +193,7 @@
                     <div class="row text-right">
                         <div class="col-lg-2">
                             <button class="btn">
-                                <span class="glyphicon glyphicon-comment"> </span> 
+                                <span class="glyphicon glyphicon-comment" > </span> 
                                 </button>
                         </div>
 
@@ -209,107 +210,23 @@
                         </div>
                     </div>
                   </div>
-                  <div class="row themeColor commentBody">
-                        <div class="commentDiv">
-                            <span class="user hand">Agin!:</span>
-                            <span class="comment hand">骚啊！</span>
-                        </div>
-                        <div class="commentDiv">
-                            <span class="user hand">月:</span>
-                            <span class="comment hand">懂很多啊！</span>
-                        </div>
-                        <div class="commentDiv">
-                            <span class="user hand">芳华:</span>
-                            <span class="comment hand">必须点赞啊！</span>
-                        </div>
-                        <div class="commentDiv">
-                            <span class="user hand">Showyan:</span>
-                            <span class="comment hand">这两张图完美的说明了安卓和苹果手机的区别。现实的确就是图里的内容。</span>
-                        </div>
-                      </div>
-                      
-					</c:forEach>
                   
-					<!-- 
-							<div class="message themeColor">
-                      <div class="row">
-                          <div class="col-lg-1">
-                              <img class="middleHeadPicture" src="static/img/user1.jpg"/>
-                          </div>
-                          <div class="col-lg-11">
-                            <span class="author">
-                                <strong>2号用户</strong>
-                            </span>
-                            <div class="logContext">
-                                <p class="text-primary">
-                                    苹果细节比所有手机都好。
-                                    比如震动反馈，用久了苹果以为现在所有大厂旗舰机震动都差不多，但是上周试了下我爸才买的华为p30，发现震动不是一个层面的感觉，华为的震动是散开的，震动的重心一直在手机中央，而苹果震动是清脆集中的，震动的重心就是在你操作的地方。而且苹果的震动无处不在又自然，比如知乎点赞就可以感觉到。
-                                    天，才注意到居然快两千赞了！！！！知乎用户不是姿势水平很高吗？
-                                    怎么这么一个没营养的问题下无聊的回答关注度这么大？
-                                    我的妈妈呀，一万一千个赞，760条评论，就这么一个问题这么一个回答。大家是有多空虚？？？╰ ╯╰ ╯╰ ╯非常感谢
-                                     @天才少女阿福 的提醒，我这个回答居然还被人抄袭了，太令人震惊了。
-                                     但更震惊的是山寨版居然也有八千赞。我不打算花精力维权投诉，毕竟这只是花了两分钟写的一个很水的回答。
-                                     只是觉得太好笑了，想当年我的另一个号分享自己的人生巅峰—两个月逆袭考上985的考研经验，写了上千字，用心满满，干货满满，到头来不过百余赞。
-                                     看到现在这样的回答三万赞还被山寨真的觉得好笑又讽刺。<br>
-                                  
-                                  苹果细节比所有手机都好。
-                                  比如震动反馈，用久了苹果以为现在所有大厂旗舰机震动都差不多，但是上周试了下我爸才买的华为p30，发现震动不是一个层面的感觉，华为的震动是散开的，震动的重心一直在手机中央，而苹果震动是清脆集中的，震动的重心就是在你操作的地方。而且苹果的震动无处不在又自然，比如知乎点赞就可以感觉到。
-                                  天，才注意到居然快两千赞了！！！！知乎用户不是姿势水平很高吗？
-                                  怎么这么一个没营养的问题下无聊的回答关注度这么大？
-                                  我的妈妈呀，一万一千个赞，760条评论，就这么一个问题这么一个回答。大家是有多空虚？？？╰ ╯╰ ╯╰ ╯非常感谢
-                                   @天才少女阿福 的提醒，我这个回答居然还被人抄袭了，太令人震惊了。
-                                   但更震惊的是山寨版居然也有八千赞。我不打算花精力维权投诉，毕竟这只是花了两分钟写的一个很水的回答。
-                                   只是觉得太好笑了，想当年我的另一个号分享自己的人生巅峰—两个月逆袭考上985的考研经验，写了上千字，用心满满，干货满满，到头来不过百余赞。
-                                   看到现在这样的回答三万赞还被山寨真的觉得好笑又讽刺。
-
-                                    作者：江户川柯南
-                                    链接：https://www.zhihu.com/question/318051785/answer/674099625
-                                    来源：知乎
-                                    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-                            </div>
-                          </div>
+                  	<div class="row themeColor commentBody" id="bc${daily.daily_id}">
+                  	<c:forEach items="${daily.comments}"  var="comment">
+                        <div class="commentDiv">
+                            <span class="user hand">${comment.user_name}:</span>
+                            <span class="comment hand">${comment.com_detail}</span>
+                        </div>
+                    </c:forEach>
                       </div>
-                      
-                      <div class="row text-right">
-                          <div class="col-lg-2">
-                              <button class="btn">
-                                  <span class="glyphicon glyphicon-comment"> </span> 
-                                  </button>
-                          </div>
-  
-                          <div class="col-lg-2">
-                              <button class="btn">
-                                  <span class="glyphicon glyphicon-share-alt"> </span> 
-                              </button>
-                          </div>
-  
-                          <div class="col-lg-2">
-                              <button class="btn">
-                                  <span class="glyphicon glyphicon-thumbs-up"> </span> 
-                              </button>
-                          </div>
-                      </div>
+                  
+                      <div class=" input-group mb-3"style="margin-top:5px;">
+                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="请输入想发送的内容..." id="c${daily.daily_id}"/>
+                    <div class = "input-group-append">
+                        <button class="btn btn-success" type="button" onclick="sendComment(${daily.daily_id})" >发送</button>
                     </div>
-                    <div class="row  themeColor commentBody">
-                            <div class="commentDiv">
-                                <span class="user hand">Agin!:</span>
-                                <span class="comment hand">骚啊！</span>
-                            </div>
-                            <div class="commentDiv">
-                                <span class="user hand">月:</span>
-                                <span class="comment">懂很多啊！</span>
-                            </div>
-                            <div class="commentDiv">
-                                <span class="user hand">芳华:</span>
-                                <span class="comment hand">必须点赞啊！</span>
-                            </div>
-                            <div class="commentDiv">
-                                <span class="user hand">Showyan:</span>
-                                <span class="comment hand">这两张图完美的说明了安卓和苹果手机的区别。现实的确就是图里的内容。</span>
-                            </div>
-                          </div>
-					 -->
-                  
+                  </div>
+					</c:forEach>
 
                 </div>
               </div>
@@ -408,15 +325,9 @@
 		        	        dataType:"json",
 		        	        data: {"to_id":to_id},
 		        	        success : function(data){
-		        	            /*alert("username："+data.username+"   id："+data.id);*/
-		        	            /*showFriend();*/
-		        	            /*addAttribute("ssname",data.user.user_name);
-		        	            addAttribute("sspicture",data.user.daily_picture);*/
-		        	            /*console.log(data.user_name);*/
-		        	            /*showFriend(data.user_name,data.daily_picture);*/
+		        	        	
 		        	        },
 		        	        error : function(){
-		        	        	/*showFriend();*/
 		        	        	document.getElementById('friend_id').value="";
 		        	        	$('#search').modal('hide');
 		        	        }
@@ -436,7 +347,7 @@
 		        	        	/*document.getElementById('friend_id').value="";
 		        	        	$('#search').modal('hide');*/
 		        	        }
-		        	    })
+		        	    });
 		            }
 		            function notice(data){
 		            	var i;
@@ -467,8 +378,32 @@
 		        	        	/*document.getElementById('friend_id').value="";
 		        	        	$('#search').modal('hide');*/
 		        	        }
-		        	    })
-		            }
+		        	    });
+		            }      
+			</script>
+			<script>
+				function sendComment(daily_id){
+					var name = "c"+daily_id;
+					var bc = "bc"+daily_id;
+					
+					console.log(name);
+					var com_detail = document.getElementById(name).value;
+					document.getElementById(name).value = "";
+					$.ajax({
+	        	        type : "post",
+	        	        url : "<%=basePath%>comment.action",
+	        	        dataType:"json",
+	        	        data: {"daily_id":daily_id,"com_detail":com_detail},
+	        	        success : function(data){
+	        	        	var html = "";
+	        	        	html = document.getElementById(bc).innerHTML;
+	        	        	html += `<div class="commentDiv"><span class="user hand">`+data.user_name+`:</span><span class="comment hand">`+com_detail+`</span></div>`;
+	        	        	document.getElementById(bc).innerHTML=html;
+	        	        },
+	        	        error : function(){
+	        	        }
+	        	    });
+				}
 			</script>
     </body>
 </html>

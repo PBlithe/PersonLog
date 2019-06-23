@@ -25,4 +25,17 @@
 	   
     </select>
     
+    <insert id="addUser" parameterType="String">
+    	insert into user(
+    		user_name,
+    		user_code,
+    		user_pswd,
+    		daily_picture
+    	)values(
+    		'undefined',
+    		#{usercode},
+    		#{password},
+    		'head.png'
+    	)
+    </insert>
 </mapper>

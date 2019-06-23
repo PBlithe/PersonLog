@@ -33,5 +33,8 @@ public class UserServiceImpl implements UserService {
 	    String user = this.userDao.findUserPicture(user_id);
 	    return user;
 	}
-	
+	@Override
+	public int addUser(String usercode, String password) {
+	    return userDao.addUser(usercode, password);
+	}
 }

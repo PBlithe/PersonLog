@@ -43,25 +43,57 @@
               <div class="collapse navbar-collapse m-auto" id="navbarColor03">
                 <ul class="navbar-nav m-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><button class="btn btn-outline-success ">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;    </button></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/daily/list.action"><button class="btn btn-outline-success ">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;    </button></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;    </button></a>
                   </li>
                   <li class="nav-item ">
-                    <a class="nav-link" href="#"><button class="btn btn-outline-success ">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;    </button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-outline-success "id="comment1">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<span class="badge badge-light" id="send_number"></span></button></a>
                   </li>
                   <li class="nav-item active">
                     <a class="nav-link" href="#"><button class="btn btn-outline-success active">&nbsp;   <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;    </button></a>
                   </li>
                   </ul>
                 <form class="form-inline m-auto">
-                  <input class="form-control mr-sm-2" type="text" placeholder="请输入...">
-                  <button class="btn btn-success" type="submit">搜索</button>
+                  <input class="form-control mr-sm-2" type="text" placeholder="请输入..."id="friend_id">
+                  <button class="btn btn-success" type="button"  data-toggle="modal" data-target="#search" onclick="mysearch()">搜索</button>
                 </form>
+                
+                <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <!--<h5 class="modal-title" id="exampleModalLongTitle">日志</h5>-->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body m-auto">
+                        <div class="m-auto">
+                            <img src="<%=basePath%>static/img/${sspicture}" class="headPicture" id="sspicture"/>
+                        </div>
+                          
+                          <span class="text-primary" id="ssname"></span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick = "addfriend()">添加</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+                
               </div>
             </nav>
-
+			<div class="commentPopup themeColor" id="commentPopup" tabindex='-1'>
+            <!-- 
+            		<div class=""><span class="text-info">缘是南柯一梦</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">欲盖弥彰</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">hbw</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+		             <div class=""><span class="text-info">世辞</span><span>请求添加好友</span><a href="#" class="text-info">同意</a><span>/</span><a href="#" class="text-info">不同意</a></div>
+             -->
+            </div>
             
             <div class="container m-auto">
                 <div class="row">
@@ -127,7 +159,12 @@
                                 	</div>
                                 <div>
                                		<a href="${pageContext.request.contextPath}/letter/${friend.friend_id }/message.action">
-                               			<span class="row text-primary">${friend.friendName}</span>
+                               			<c:if test="${friend.friend_id==sendto}">
+                               				<span class="row text-primary text-success">${friend.friendName}</span>
+                               			</c:if>
+                               			<c:if test="${friend.friend_id!=sendto}">
+                               				<span class="row text-primary">${friend.friendName}</span>
+                               			</c:if>
                                     	<!--  <span class="row text-secondary">计算机专业出身的金融从业者</span>-->
                                		</a>
                                     
@@ -356,9 +393,21 @@
               });
               $('#comment1').focus(function(){
                 $('#commentPopup').show();
+                $('#commentPopup').focus();
               });
-              $('#comment1').blur(function(){
-                $('#commentPopup').hide();
+              $('#commentPopup').blur(function(){
+            	  $.ajax({
+	        	        type : "get",
+	        	        url : "<%=basePath%>read.action",
+	        	        dataType:"json",
+	        	        success : function(data){
+	        	        	$("#commentPopup").html("");
+	        	        	$("#send_number").html("");
+	        	        	$('#commentPopup').hide();
+	        	        },
+	        	        error : function(){
+	        	        }
+	        	    })
               });
               
               function send(owner_id,sendto){
@@ -387,6 +436,97 @@
               function messageShow(){
             	  window.location.href = "<%=basePath %>letter/${sendto}/message.action";
               }
+              
+              function mysearch(){
+	            	var friend_id = $("#friend_id").val();
+	            	console.log(friend_id);
+	            	var json = {"friend_id":friend_id};
+	            	$.ajax({
+	        	        type : "post",
+	        	        url : "<%=basePath %>search.action",
+	        	        dataType:"json",
+	        	        data: {"friend_id":friend_id},
+	        	        success : function(data){
+	        	            showFriend(data.user_name,data.daily_picture);
+	        	        },
+	        	        error : function(){
+	        	        	/*showFriend();*/
+	        	        }
+	        	    })
+	            }
+	            
+	            function showFriend(user_name,daily_picture){
+	            	document.getElementById('ssname').innerHTML=user_name;
+	            	var path =  "<%=basePath%>static/img/";
+	            	path = path+daily_picture;
+	            	document.getElementById("sspicture").src = path;
+	            }
+	            
+	            function addfriend(){
+	            	var to_id = $("#friend_id").val();
+	            	$.ajax({
+	        	        type : "post",
+	        	        url : "<%=basePath %>addFriend.action",
+	        	        dataType:"json",
+	        	        data: {"to_id":to_id},
+	        	        success : function(data){
+	        	        	
+	        	        },
+	        	        error : function(){
+	        	        	document.getElementById('friend_id').value="";
+	        	        	$('#search').modal('hide');
+	        	        }
+	        	    })
+	            }
+              
+              window.onload = function(){
+	            	//console.log("wzs");
+	            	$.ajax({
+	        	        type : "get",
+	        	        url : "<%=basePath%>notice.action",
+	        	        dataType:"json",
+	        	        success : function(data){
+	        	        	notice(data);
+	        	        },
+	        	        error : function(){
+	        	        	/*showFriend();*/
+	        	        	/*document.getElementById('friend_id').value="";
+	        	        	$('#search').modal('hide');*/
+	        	        }
+	        	    })
+	            };
+	            function notice(data){
+	            	console.log("wzs");
+	            	var i;
+  	        	var html = "";
+  	        	if(data.length!=0)
+  	        		$("#send_number").html(data.length);
+  	        	//console.log(html);
+  	        	for(i=0;i<data.length;i++){
+  	        		var msg = data[i].user_id;
+  	        		//console.log(msg);
+  	        		html += `<div class=""><span class="text-info hand">`+data[i].user_name+`</span><span>&nbsp;&nbsp;请求添加好友&nbsp;&nbsp;</span><span href="#" class="text-info hand" onclick=agree(`+msg+`)>同意</span><span style="display:none">`+data[i].user_id+`</span></div>`;
+  	        	}
+  	        	//console.log(html);
+  	        	$("#commentPopup").html(html);
+	            }
+	            function agree(friend_id){
+	            	console.log(friend_id);
+	            	$.ajax({
+	        	        type : "post",
+	        	        url : "<%=basePath%>agree.action",
+	        	        dataType:"json",
+	        	        data: {"friend_id":friend_id},
+	        	        success : function(data){
+	        	        	//notice(data);
+	        	        },
+	        	        error : function(){
+	        	        	/*showFriend();*/
+	        	        	/*document.getElementById('friend_id').value="";
+	        	        	$('#search').modal('hide');*/
+	        	        }
+	        	    })
+	            }
             </script>
     </body>
 </html>

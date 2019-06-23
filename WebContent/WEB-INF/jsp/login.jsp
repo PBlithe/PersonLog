@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() 
+	                   + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -62,9 +67,15 @@
                 <hr/>
                 <div>
                 <p class="text-primary">需要注册?</p>
-                <button class="btn btn-danger btn-block btn-sm" type="submit">注册</button>
+                <button class="btn btn-danger btn-block btn-sm" type="button" onclick="register()">注册</button>
             </div>
         </form>
+        
+        <script>
+        	function register(){
+        		window.location.href = "<%=basePath%>register.action";
+        	}
+        </script>
     </body>
 </body>
 </html>

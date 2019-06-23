@@ -20,6 +20,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (url.indexOf("/login.action") >= 0) {
 			return true;
 		}
+		else if(url.indexOf("/register.action")>=0) {
+		    return true;
+		}
 		// 获取Session
 		else {
 		HttpSession session = request.getSession();

@@ -1,6 +1,7 @@
 package com.core.po;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 /**
  * 用户持久化类
  */
@@ -20,6 +21,7 @@ public class Daily implements Serializable{
 	private Integer user_id;
 	private String daily_picture;//用户头像
 	private String privacy;
+	private List<Comment> comments;
 	
 	public Integer getDaily_id() {
 		return daily_id;
@@ -64,5 +66,10 @@ public class Daily implements Serializable{
 	public void setPrivacy(String privacy) {
 	    this.privacy = privacy;
 	}
-	
+	public List<Comment> getComments() {
+	    return comments;
+	}
+	public void setComments(List<Comment> comments) {
+	    this.comments = comments;
+	}
 }

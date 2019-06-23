@@ -93,3 +93,7 @@
     height: 300px;
     overflow-y: auto;
 }
+.comment_input{
+	float : left;
+	width: 300px;
+}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.common.utils.Page;
+import com.core.po.Comment;
 import com.core.po.Daily;
 import com.core.po.Friend;
 import com.core.po.User;
+import com.core.service.CommentService;
 import com.core.service.DailyService;
 import com.core.service.FriendService;
 import com.core.service.UserService;
@@ -37,6 +40,8 @@ public class DailyController {
 	private UserService userService;
 	@Autowired
 	private FriendService friendService;
+	@Autowired
+	private CommentService commentService;
 
 	/**
 	 * 创建日志
@@ -94,6 +99,10 @@ public class DailyController {
 	                return -1;
 	            }
 	        });
+	        for(int i=0;i<dailyList.size();i++) {
+	            List<Comment> comments = commentService.findComments(dailyList.get(i).getDaily_id());
+	            dailyList.get(i).setComments(comments);
+	        }
 	        model.addAttribute("dailyList",dailyList);
 	        return "home";
 	    }
@@ -140,4 +149,24 @@ public class DailyController {
 		}
 		return false;
 	    }
+	    
+	    @RequestMapping("/comment.action")
+	    @ResponseBody
+	    public Comment comment(HttpSession session,@Param("daily_id")String daily_id,@Param("com_detail")String com_detail) {
+		System.out.println(daily_id);
+		System.out.println(com_detail);
+		User user = (User)session.getAttribute("USER_SESSION");
+		Comment com = new Comment();
+		Integer d = Integer.parseInt(daily_id);
+		com.setDaily_id(d);
+		com.setCom_detail(com_detail);
+		com.setUser_id(user.getUser_id());
+		com.setUser_name(user.getUser_name());
+		int rows = commentService.addComment(com);
+		if(rows>0) {
+		    return com;
+		}
+		return null;
+	    }
+	    
 }

@@ -1,7 +1,9 @@
 package com.core.web.controller;
+import com.core.po.Comment;
 import com.core.po.Daily;
 import com.core.po.Friend;
 import com.core.po.User;
+import com.core.service.CommentService;
 import com.core.service.DailyService;
 import com.core.service.FriendService;
 import com.core.service.UserService;
@@ -28,6 +30,8 @@ public class UserController {
 	private DailyService dailyService;
 	@Autowired
 	private FriendService friendService;
+	@Autowired
+	private CommentService commentService;
 	/**
 	 * 用户登录
 	 */
@@ -64,6 +68,10 @@ public class UserController {
 		                return -1;
 		            }
 		        });
+		        for(int i=0;i<dailyList.size();i++) {
+		            List<Comment> comments = commentService.findComments(dailyList.get(i).getDaily_id());
+		            dailyList.get(i).setComments(comments);
+		        }
 		        model.addAttribute("dailyList",dailyList);
 			// 将用户对象添加到Session
 			session.setAttribute("USER_SESSION", user);
@@ -104,5 +112,5 @@ public class UserController {
 	public String toLogin() {
 	    return "login";
 	}
-
+	
 }

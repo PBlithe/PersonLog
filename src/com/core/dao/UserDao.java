@@ -16,4 +16,6 @@ public interface UserDao {
 	public String findUserPicture(Integer user_id);
 	
 	public String findUserName(Integer user_id);
+	
+	public int addUser(@Param("usercode")String usercode,@Param("password") String password);
 }
