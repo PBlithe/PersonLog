@@ -32,7 +32,7 @@
     		user_pswd,
     		daily_picture
     	)values(
-    		'undefined',
+    		'我在天南海北',
     		#{usercode},
     		#{password},
     		'head.png'

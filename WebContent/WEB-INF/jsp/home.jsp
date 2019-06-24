@@ -29,8 +29,20 @@
           body{
             background-color: #ecf0f1;
           }
+          pre{
+				white-space: pre-wrap; /* css-3 */
+				white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+				white-space: -pre-wrap; /* Opera 4-6 */
+				white-space: -o-pre-wrap; /* Opera 7 */
+				word-wrap: break-word; /* Internet Explorer 5.5+ */
+				font-family: "微软雅黑";
+				font-size:15px;
+			}
+			p{
+				font-family: "微软雅黑";
+				font-size:15px;
+			}
         </style>
-        
     </head>
     <body>
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -73,7 +85,7 @@
                             <img src="<%=basePath%>static/img/${sspicture}" class="headPicture" id="sspicture"/>
                         </div>
                           
-                          <span class="text-primary" id="ssname"></span>
+                          <div class="m-auto text-center"><span class="text-primary text-center" id="ssname"></span></div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -105,7 +117,7 @@
 
                     <div class="container-fluid bordeShadow">
                       <div class="row" style="margin-top:20px;margin-bottom:20px">
-                        <div class="col-lg-4 m-auto hand">
+                        <div class="col-lg-4 m-auto hand" onclick="mylist()">
                           <div class="row m-auto"><span>日志</span></div>
                           <span class="text-center">${dailyCount }</span>
                         </div>
@@ -190,7 +202,6 @@
 								<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
 								</button>
 								<div class="dropdown-menu">
-								  <a class="dropdown-item" href="#" onclick="editDaily(${daily.daily_id})">编辑</a>
 								  <a class="dropdown-item" href="<%=basePath %>daily/${daily.daily_id}/delete.action" >删除</a>
 								</div>
 							</div>
@@ -205,7 +216,7 @@
                           </c:if>
                           <c:if test="${USER_SESSION.user_id!= daily.user_id }">
                           	<div class="logContext">
-                              <p class="text-primary" >${daily.daily_details}</p>
+                              <pre class="text-primary" >${daily.daily_details}</pre>
                           </div>
                           </c:if>
                         </div>
@@ -235,7 +246,7 @@
                   	<div class="row themeColor commentBody" id="bc${daily.daily_id}">
                   	<c:forEach items="${daily.comments}"  var="comment">
                         <div class="commentDiv">
-                            <span class="user hand">${comment.user_name}:</span>
+                            <span class="user hand">${comment.user_name}&nbsp;&nbsp;:&nbsp;&nbsp;</span>
                             <span class="comment hand">${comment.com_detail}</span>
                         </div>
                     </c:forEach>
@@ -430,8 +441,8 @@
 					window.location.href = "<%=basePath %>dailyFriend.action";
 				}
 				
-				function getDaily(daily_id){
-					
+				function mylist(){
+					window.location.href = "<%=basePath %>mylist.action";
 				}
 				
 				function updateDaily(daily_id,user,id){

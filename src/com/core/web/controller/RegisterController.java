@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.common.utils.MD5Util;
 import com.core.po.Daily;
 import com.core.po.Friend;
 import com.core.po.User;
@@ -29,11 +30,12 @@ public class RegisterController {
     
     @RequestMapping("/add/register.action")
 	public String register(Model model,HttpSession session,String usercode,String password) {
-	System.out.println(usercode);
-	System.out.println(password);
-	int rows = userService.addUser(usercode, password);
+	//System.out.println(usercode);
+	//System.out.println(password);
+	String p = MD5Util.encrypt(password);
+	int rows = userService.addUser(usercode, p);
 	if(rows>0) {
-	    User user = userService.findUser(usercode, password);
+	    User user = userService.findUser(usercode, p);
 	    session.setAttribute("USER_SESSION", user);
 	        List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
 	        List<Friend> friendList = friendService.findFriendList(user.getUser_id());

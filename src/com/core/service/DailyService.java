@@ -17,4 +17,6 @@ public interface DailyService {
 	public List<Daily> findFriendDaily(Integer user_id);
 	
 	public int updateDaily(Daily daily);
+	
+	public int findUser_id(Integer daily_id);
 }

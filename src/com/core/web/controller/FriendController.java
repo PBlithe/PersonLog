@@ -99,8 +99,9 @@ public class FriendController {
 	    
 	    Integer f = Integer.parseInt(friend_id);
 	    User user = (User) session.getAttribute("USER_SESSION");
-	    int rows = friendService.addFriend(user.getUser_id(),f);
-	    if(rows>0) {
+	    int rows1 = friendService.addFriend(user.getUser_id(),f);
+	    int rows2 = friendService.addFriend(f,user.getUser_id());
+	    if(rows1>0&&rows2>0) {
 		return "TRUE";
 	    }
 	    return "FALSE";

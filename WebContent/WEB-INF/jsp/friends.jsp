@@ -102,7 +102,7 @@
 
                     <div class="container-fluid bordeShadow">
                       <div class="row" style="margin-top:20px;margin-bottom:20px">
-                        <div class="col-lg-4 m-auto hand">
+                        <div class="col-lg-4 m-auto hand" onclick="mylist()">
                           <div class="row m-auto"><span>日志</span></div>
                           <span class="text-center">${dailyCount }</span>
                         </div>
@@ -235,6 +235,9 @@
             $('#comment1').blur(function(){
                 $('#commentPopup').hide();
             });
+            function mylist(){
+				window.location.href = "<%=basePath %>mylist.action";
+			}
             </script>
 
     </body>

@@ -16,12 +16,13 @@
         <meta name="robots" content="noimageindex, noarchive">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="theme-color" content="#000000">
-        <title>好友日志
+        <title>日志
         </title>
 
         <link href="<%=basePath%>static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<%=basePath%>static/vendor/css/style.css" rel="stylesheet"/>
         <link href="<%=basePath%>static/vendor/css/letter.css" rel="stylesheet"/>
+        <script src="<%=basePath%>static/vendor/css/popper.min.js"></script>
         <script src="<%=basePath%>static/vendor/js/jquery-3.4.1.min.js"></script>
         <script src="<%=basePath%>static/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -29,6 +30,15 @@
           body{
             background-color: #ecf0f1;
           }
+          pre{
+				white-space: pre-wrap; /* css-3 */
+				white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+				white-space: -pre-wrap; /* Opera 4-6 */
+				white-space: -o-pre-wrap; /* Opera 7 */
+				word-wrap: break-word; /* Internet Explorer 5.5+ */
+				font-family: "微软雅黑";
+				font-size:15px;
+			}
         </style>
         
     </head>
@@ -101,7 +111,7 @@
 
                     <div class="container-fluid bordeShadow">
                       <div class="row" style="margin-top:20px;margin-bottom:20px">
-                        <div class="col-lg-4 m-auto hand">
+                        <div class="col-lg-4 m-auto hand" onclick="mylist()">
                           <div class="row m-auto"><span>日志</span></div>
                           <span class="text-center">${dailyCount }</span>
                         </div>
@@ -134,14 +144,54 @@
                               <strong>${daily.daily_author}</strong>
                           </span>
                           <div class="logContext">
-                              <p class="text-primary">
-                                ${daily.daily_details}
-                                </p>
+                              <pre class="text-primary">${daily.daily_details}</pre>
                           </div>
                         </div>
                     </div>
                     
                   </div>
+                  </c:forEach>
+                  
+                  <c:forEach items = "${myList}" var = "mydaily">
+                  	<div class="message themeColor">
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <img class="middleHeadPicture" src="<%=basePath %>static/img/${mydaily.daily_picture}"/>
+                        </div>
+                        <div class="col-lg-11">
+                        <div style="clear:both">
+                        	<div style="width:84px;float:left">
+                        	<span class="author" >
+                              <strong>${mydaily.daily_author}</strong>
+                          </span>
+                        	</div>
+                        	<div style="margin-left:610px">
+	                        	<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+								</button>
+								<div class="dropdown-menu">
+								  <a class="dropdown-item" href="<%=basePath %>mylist/${mydaily.daily_id}/delete.action" >删除</a>
+								</div>
+							</div>
+                        	</div>
+                        </div>
+                          
+                          	<div class="logContext">
+                              <pre class="text-primary" >${mydaily.daily_details}</pre>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row themeColor commentBody" id="bc${mydaily.daily_id}">
+                  	<c:forEach items="${mydaily.comments}"  var="comment">
+                        <div class="commentDiv">
+                            <span class="user hand">${comment.user_name}&nbsp;&nbsp;:&nbsp;&nbsp;</span>
+                            <span class="comment hand">${comment.com_detail}</span>
+                        </div>
+                    </c:forEach>
+                      </div>
+                      
                   </c:forEach>
 
                 </div>
@@ -163,6 +213,9 @@
               function dailyfriend(){
 					window.location.href = "<%=basePath %>dailyFriend.action";
 				}
+              function mylist(){
+  				window.location.href = "<%=basePath %>mylist.action";
+  			}
             </script>
     </body>
 </html>

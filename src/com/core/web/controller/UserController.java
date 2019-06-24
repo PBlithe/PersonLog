@@ -1,4 +1,5 @@
 package com.core.web.controller;
+import com.common.utils.MD5Util;
 import com.core.po.Comment;
 import com.core.po.Daily;
 import com.core.po.Friend;
@@ -40,7 +41,8 @@ public class UserController {
                                                           HttpSession session) {
 	    
 		// 通过账号和密码查询用户
-		User user = userService.findUser(usercode, password);
+	    	String p = MD5Util.encrypt(password);
+		User user = userService.findUser(usercode, p);
 		if(user != null){	
 		    	// 将用户对象添加到Session
 		 	session.setAttribute("USER_SESSION", user);

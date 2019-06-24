@@ -34,7 +34,9 @@
         select * from rizhi where user_id = #{user_id} order by daily_id desc
     </select>
 
-	
+	<select id="findUser_id"  parameterType="Integer"  resultType="Integer">
+		select user_id from rizhi where daily_id = #{daily_id}
+	</select>
 	
 	<!-- 删除日志 -->
 	<delete id="deleteDaily" parameterType="Integer">
@@ -48,4 +50,5 @@
 	<update id="updateDaily" parameterType="daily">
 		update rizhi SET daily_details = #{daily_details} where daily_id = #{daily_id}
 	</update>
+	
 </mapper>

@@ -62,5 +62,12 @@ public class DailyServiceImpl implements DailyService {
 	    // TODO Auto-generated method stub
 	    return dailyDao.updateDaily(daily);
 	}
+
+
+	@Override
+	public int findUser_id(Integer daily_id) {
+	    // TODO Auto-generated method stub
+	    return  dailyDao.findUser_id( daily_id);
+	}
 	
 }

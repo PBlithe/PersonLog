@@ -174,10 +174,12 @@ public class DailyController {
 	    
 	    @RequestMapping("daily/{daily_id}/delete.action")
 	    public String deleteDaily(Model model,HttpSession session,@PathVariable Integer daily_id) {
-		dailyService.deleteDaily(daily_id);
-		commentService.deleteComment(daily_id);
 		User user = (User) session.getAttribute("USER_SESSION");
-	        List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
+		if(user.getUser_id()==dailyService.findUser_id(daily_id)) {
+		    dailyService.deleteDaily(daily_id);
+		    commentService.deleteComment(daily_id);
+		}
+		List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
 	        model.addAttribute("dailyCount", dailyList.size());
 	        List<Friend> friendList = friendService.findFriendList(user.getUser_id());
 	        
