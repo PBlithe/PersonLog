@@ -45,6 +45,7 @@ public class UserController {
 		    	// 将用户对象添加到Session
 		 	session.setAttribute("USER_SESSION", user);
 		        List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
+		        model.addAttribute("dailyCount", dailyList.size());
 		        List<Friend> friendList = friendService.findFriendList(user.getUser_id());
 		        for(int i=0;i<friendList.size();i++) {
 		            List<Daily> daily = dailyService.findFriendDaily(friendList.get(i).getFriend_id());
@@ -75,6 +76,8 @@ public class UserController {
 		        model.addAttribute("dailyList",dailyList);
 			// 将用户对象添加到Session
 			session.setAttribute("USER_SESSION", user);
+			
+			model.addAttribute("friendCount", friendList.size());
 			// 跳转到主页面
 		    return "home"; 
 			//return "redirect:student/daily/list.action";   //有输出查询内容

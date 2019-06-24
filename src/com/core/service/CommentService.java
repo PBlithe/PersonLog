@@ -11,4 +11,5 @@ public interface CommentService {
     
     public List<Comment> findComments(Integer daily_id);
     
+    public int deleteComment(Integer daily_id);
 }

@@ -42,16 +42,16 @@
                     <div class="collapse navbar-collapse m-auto" id="navbarColor03">
                       <ul class="navbar-nav m-auto">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#"><button class="btn btn-outline-success active">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
+                          <a class="nav-link" href="${pageContext.request.contextPath}/daily/list.action"><button class="btn btn-outline-success active">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#"><button class="btn btn-outline-success" type="button" id="comment1">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<span class="badge badge-light">4</span></button></a>
+                          <a class="nav-link" href="#"><button class="btn btn-outline-success" type="button" id="comment1">&nbsp;   <span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
+                          <a class="nav-link" href="${pageContext.request.contextPath }/letter/list.action"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
                         </li>
                         </ul>
                       <form class="form-inline m-auto">
@@ -97,19 +97,19 @@
                 <div class="col-lg-4" style="margin-top:7px">
                   <div class="row">
                     <div class="row m-auto bg" style="width:380px;height:110px;background: url('static/img/background.jpg')">
-                      <img class="headPicture" src="static/img/head.png"/>
+                      <img class="headPicture" src="${pageContext.request.contextPath}/static/img/${USER_SESSION.daily_picture}"/>
                     </div>
 
                     <div class="container-fluid bordeShadow">
                       <div class="row" style="margin-top:20px;margin-bottom:20px">
                         <div class="col-lg-4 m-auto hand">
                           <div class="row m-auto"><span>日志</span></div>
-                          <span class="text-center">10</span>
+                          <span class="text-center">${dailyCount }</span>
                         </div>
 
                         <div class="col-lg-4 m-auto hand">
                             <div class="row m-auto">好友</div>
-                            <span class="text-center">25</span>
+                            <span class="text-center">${friendCount }</span>
                         </div>
                         <div class="col-lg-4 m-auto hand">
                             <div class="row m-auto">访问记录</div>
@@ -126,7 +126,7 @@
 
                   <div class="row themeColor hand" style="padding-top:12px;" data-toggle="modal" data-target="#logModal">
                     <div class="col-lg-1">
-                        <img class="smallHeadPicture" src="static/img/head.png"/>
+                        <img class="smallHeadPicture" src="${pageContext.request.contextPath}/static/img/${USER_SESSION.daily_picture}"/>
                     </div>
 
                     <div class="col-lg-8">

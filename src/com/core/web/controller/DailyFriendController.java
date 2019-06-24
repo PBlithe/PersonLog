@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.core.po.Daily;
 import com.core.po.Friend;
 import com.core.po.User;
+import com.core.service.DailyService;
 import com.core.service.FriendService;
 import com.core.service.UserService;
 
@@ -22,11 +24,14 @@ public class DailyFriendController {
     public FriendService friendService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public DailyService dailyService;
     
     @RequestMapping("/dailyFriend.action")
     public String dailyFriend(Model model,HttpSession session) {
         	User user = (User) session.getAttribute("USER_SESSION");
         	Integer owner_id = user.getUser_id();
+        	List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
         	List<Friend> friendList = friendService.findFriendList(owner_id);
         	
         	for(int i=0;i<friendList.size();i++) {
@@ -36,11 +41,23 @@ public class DailyFriendController {
         	    friendList.get(i).setFriendPicture(userpicture);
         	}
         	model.addAttribute("friendList",friendList);
+        	model.addAttribute("dailyCount", dailyList.size());
+        	model.addAttribute("friendCount",friendList.size());
         	return "friends";
     }
     
-    @RequestMapping("dailyFriend/{friend_id }/list.action")
+    @RequestMapping("dailyFriend/{friend_id}/list.action")
     public String friendList(Model model,HttpSession session,@PathVariable Integer friend_id) {
-	return null;
+	//System.out.println("成功");
+	User user = (User) session.getAttribute("USER_SESSION");
+	Integer owner_id = user.getUser_id();
+	List<Daily> mydailyList = dailyService.findDailyList(user.getUser_id());
+	List<Daily> dailyList = dailyService.findFriendDaily(friend_id);
+	List<Friend> friendList = friendService.findFriendList(owner_id);
+	
+	model.addAttribute("dailyList", dailyList);
+	model.addAttribute("dailyCount", mydailyList.size());
+	model.addAttribute("friendCount",friendList.size());
+	return "friendList";
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,6 +76,7 @@ public class DailyController {
 	    public String list(Model model,HttpSession session){
 		User user = (User) session.getAttribute("USER_SESSION");
 	        List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
+	        model.addAttribute("dailyCount", dailyList.size());
 	        List<Friend> friendList = friendService.findFriendList(user.getUser_id());
 	        
 	        for(int i=0;i<friendList.size();i++) {
@@ -104,6 +106,7 @@ public class DailyController {
 	            dailyList.get(i).setComments(comments);
 	        }
 	        model.addAttribute("dailyList",dailyList);
+		model.addAttribute("friendCount", friendList.size());
 	        return "home";
 	    }
 	    
@@ -169,4 +172,58 @@ public class DailyController {
 		return null;
 	    }
 	    
+	    @RequestMapping("daily/{daily_id}/delete.action")
+	    public String deleteDaily(Model model,HttpSession session,@PathVariable Integer daily_id) {
+		dailyService.deleteDaily(daily_id);
+		commentService.deleteComment(daily_id);
+		User user = (User) session.getAttribute("USER_SESSION");
+	        List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
+	        model.addAttribute("dailyCount", dailyList.size());
+	        List<Friend> friendList = friendService.findFriendList(user.getUser_id());
+	        
+	        for(int i=0;i<friendList.size();i++) {
+	            List<Daily> daily = dailyService.findFriendDaily(friendList.get(i).getFriend_id());
+	            dailyList.addAll(daily);
+	        }
+	        Collections.sort(dailyList, new Comparator<Daily>(){
+	            /*
+	             * int compare(Person p1, Person p2) 返回一个基本类型的整型，
+	             * 返回负数表示：p1 小于p2，
+	             * 返回0 表示：p1和p2相等，
+	             * 返回正数表示：p1大于p2
+	             */
+	            public int compare(Daily d1, Daily d2) {
+	                //按照Person的年龄进行升序排列
+	                if(d1.getDaily_id() < d2.getDaily_id()){
+	                    return 1;
+	                }
+	                if(d1.getDaily_id() == d2.getDaily_id()){
+	                    return 0;
+	                }
+	                return -1;
+	            }
+	        });
+	        for(int i=0;i<dailyList.size();i++) {
+	            List<Comment> comments = commentService.findComments(dailyList.get(i).getDaily_id());
+	            dailyList.get(i).setComments(comments);
+	        }
+	        model.addAttribute("dailyList",dailyList);
+		model.addAttribute("friendCount", friendList.size());
+		return "home";
+	    }
+	    
+	    @RequestMapping("daily/update.action")
+	    @ResponseBody
+	    public boolean updateDaily(HttpSession session,@Param("daily_id") String daily_id,@Param("daily_details") String daily_details) {
+		System.out.println("ssss");
+		Daily daily =new Daily();
+		Integer d = Integer.parseInt(daily_id);
+		daily.setDaily_id(d);
+		daily.setDaily_details(daily_details);
+		int rows = dailyService.updateDaily(daily);
+		if(rows>0) {
+		    return true;
+		}
+		return false;
+	    }
 }

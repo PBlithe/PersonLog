@@ -18,4 +18,6 @@ public interface DailyDao {
 	int deleteDaily(Integer id);
 	
 	public List<Daily> findFriendDaily(Integer user_id);
+	
+	public int updateDaily(Daily daily);
 }

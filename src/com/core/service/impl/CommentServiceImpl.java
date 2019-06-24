@@ -33,5 +33,10 @@ public class CommentServiceImpl implements CommentService{
 	// TODO Auto-generated method stub
 	return commentDao.findComments(daily_id);
     }
+    @Override
+    public int deleteComment(Integer daily_id) {
+	// TODO Auto-generated method stub
+	return commentDao.deleteComment(daily_id);
+    }
 
 }

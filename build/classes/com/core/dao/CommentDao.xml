@@ -21,4 +21,8 @@
      <select id="findComments" parameterType="Integer" resultType="comment">
      	select * from comments where daily_id = #{daily_id} order by id
      </select>
+     
+     <delete id="deleteComment" parameterType="Integer">
+     	delete from comments where daily_id=#{daily_id}
+     </delete>
      </mapper>

@@ -44,4 +44,8 @@
 	<select id="findFriendDaily" parameterType="Integer"  resultType="daily">
 		select * from rizhi where user_id = #{user_id} and privacy = '0' order by daily_id desc
 	</select>
+	
+	<update id="updateDaily" parameterType="daily">
+		update rizhi SET daily_details = #{daily_details} where daily_id = #{daily_id}
+	</update>
 </mapper>

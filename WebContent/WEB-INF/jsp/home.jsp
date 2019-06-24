@@ -16,12 +16,12 @@
         <meta name="robots" content="noimageindex, noarchive">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="theme-color" content="#000000">
-        <title>首页
-        </title>
+        <title>首页</title>
 
         <link href="<%=basePath%>static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="<%=basePath%>static/vendor/css/style.css" rel="stylesheet"/>
         <link href="<%=basePath%>static/vendor/css/letter.css" rel="stylesheet"/>
+        <script src="<%=basePath%>static/vendor/css/popper.min.js"></script>
         <script src="<%=basePath%>static/vendor/js/jquery-3.4.1.min.js"></script>
         <script src="<%=basePath%>static/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -107,12 +107,12 @@
                       <div class="row" style="margin-top:20px;margin-bottom:20px">
                         <div class="col-lg-4 m-auto hand">
                           <div class="row m-auto"><span>日志</span></div>
-                          <span class="text-center">10</span>
+                          <span class="text-center">${dailyCount }</span>
                         </div>
 
                         <div class="col-lg-4 m-auto hand"  onclick="dailyfriend()">
                             <div class="row m-auto">好友</div>
-                            <span class="text-center">25</span>
+                            <span class="text-center">${friendCount}</span>
                         </div>
                         <div class="col-lg-4 m-auto hand">
                             <div class="row m-auto">访问记录</div>
@@ -179,14 +179,35 @@
                             <img class="middleHeadPicture" src="<%=basePath %>static/img/${daily.daily_picture}"/>
                         </div>
                         <div class="col-lg-11">
-                          <span class="author">
+                        <div style="clear:both">
+                        	<div style="width:84px;float:left">
+                        	<span class="author" >
                               <strong>${daily.daily_author}</strong>
                           </span>
+                        	</div>
+                        	<div style="margin-left:610px">
+	                        	<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+								</button>
+								<div class="dropdown-menu">
+								  <a class="dropdown-item" href="#" onclick="editDaily(${daily.daily_id})">编辑</a>
+								  <a class="dropdown-item" href="<%=basePath %>daily/${daily.daily_id}/delete.action" >删除</a>
+								</div>
+							</div>
+                        	</div>
+                        </div>
+                          
+                          	
+                         <c:if test="${USER_SESSION.user_id== daily.user_id}">
                           <div class="logContext">
-                              <p class="text-primary">
-                                ${daily.daily_details}
-                                </p>
+                              <p class="text-primary" contenteditable="plaintext-only" onblur="updateDaily(${daily.daily_id},${USER_SESSION.user_id},${daily.user_id })" id="detail${daily.daily_id}" >${daily.daily_details}</p>
                           </div>
+                          </c:if>
+                          <c:if test="${USER_SESSION.user_id!= daily.user_id }">
+                          	<div class="logContext">
+                              <p class="text-primary" >${daily.daily_details}</p>
+                          </div>
+                          </c:if>
                         </div>
                     </div>
                     
@@ -386,7 +407,7 @@
 					var name = "c"+daily_id;
 					var bc = "bc"+daily_id;
 					
-					console.log(name);
+					//console.log(name);
 					var com_detail = document.getElementById(name).value;
 					document.getElementById(name).value = "";
 					$.ajax({
@@ -407,6 +428,32 @@
 				
 				function dailyfriend(){
 					window.location.href = "<%=basePath %>dailyFriend.action";
+				}
+				
+				function getDaily(daily_id){
+					
+				}
+				
+				function updateDaily(daily_id,user,id){
+					var d = "detail"+daily_id;
+					if(user!=id){
+						//document.getElementById(d).innerHTML = details;
+						return;
+					}
+					//console.log(user);
+					//console.log(id);
+					var daily_details = document.getElementById(d).innerHTML;
+					console.log(daily_details);
+					$.ajax({
+	        	        type : "post",
+	        	        url : "<%=basePath%>daily/update.action",
+	        	        dataType:"json",
+	        	        data: {"daily_id":daily_id,"daily_details":daily_details},
+	        	        success : function(data){
+	        	        },
+	        	        error : function(){
+	        	        }
+	        	    });
 				}
 			</script>
     </body>

@@ -56,7 +56,11 @@ public class DailyServiceImpl implements DailyService {
 	    return dailyDao.findFriendDaily(user_id);
 	}
 
-	
-	
+
+	@Override
+	public int updateDaily(Daily daily) {
+	    // TODO Auto-generated method stub
+	    return dailyDao.updateDaily(daily);
+	}
 	
 }
