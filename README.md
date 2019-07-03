@@ -29,6 +29,18 @@
 ### 页面展示
 
 登录界面：
-
-![](D:\GithubRepository\PersonLog\img\login.jpg)
-
+![](http://github.com/PBlithe/PersonLog/raw/master/img/login.jpg)
+注册界面：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/register.jpg)
+主界面：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/home.jpg)
+添加好友：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/addfriend.jpg)
+好友日志：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/friendjournal.jpg)
+私信界面：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/letter.jpg)
+我的好友：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/myfriends.jpg)
+我的日志：
+![](http://github.com/PBlithe/PersonLog/raw/master/img/myjournal.jpg)
