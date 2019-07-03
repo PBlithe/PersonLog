@@ -29,18 +29,18 @@
 ### 页面展示
 
 登录界面：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/login.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/login.jpg)
 注册界面：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/register.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/register.jpg)
 主界面：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/home.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/home.jpg)
 添加好友：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/addfriend.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/addfriend.jpg)
 好友日志：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/friendjournal.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/friendjournal.jpg)
 私信界面：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/letter.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/letter.jpg)
 我的好友：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/myfriends.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/myfriends.jpg)
 我的日志：
-![image](http://github.com/PBlithe/PersonLog/raw/master/img/myjournal.jpg)
+![image](http://github.com/PBlithe/PersonLog/blob/raw/master/img/myjournal.jpg)
