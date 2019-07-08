@@ -1,11 +1,14 @@
 package com.pblithe.rizhi.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "messages")
 public class Message {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private Integer sender;
     private Integer receiver;
     private Integer owner_id;

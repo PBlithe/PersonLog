@@ -1,12 +1,14 @@
 package com.pblithe.rizhi.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="rizhi")
 public class Daily {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer daily_id;      //用户id
     private String daily_details;     //用户账号
     private String daily_author;     //用户名称
@@ -14,6 +16,7 @@ public class Daily {
     private Integer user_id;
     private String daily_picture;//用户头像
     private String privacy;
+    @OneToMany
     private List<Comment> comments;
 
     public Integer getDaily_id() {

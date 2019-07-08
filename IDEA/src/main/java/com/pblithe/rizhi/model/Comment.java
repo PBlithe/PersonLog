@@ -1,10 +1,12 @@
 package com.pblithe.rizhi.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "comments")
 public class Comment {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer daily_id;
     private String user_name;

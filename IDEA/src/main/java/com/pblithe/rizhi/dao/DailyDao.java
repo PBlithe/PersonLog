@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public interface DailyDao {
     @Insert("insert into rizhidaily_author,daily_details,daily_createtime,user_id,daily_picture,privacy)values(#{daily_author},#{daily_details},#{daily_createtime},#{user_id},#{daily_picture},#{privacy})")

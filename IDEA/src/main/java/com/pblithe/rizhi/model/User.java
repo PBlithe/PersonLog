@@ -1,10 +1,18 @@
 package com.pblithe.rizhi.model;
 
+import javax.persistence.*;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class User {
 
+    @Id
+    @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_id;      //用户id
     private String user_code;     //用户账号
     private String user_name;     //用户名称

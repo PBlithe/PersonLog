@@ -1,0 +1,148 @@
+.left{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.right{
+
+}
+.mycontent{
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 785px;
+    overflow-y:auto;
+}
+.mycontent::-webkit-scrollbar{
+    display:none
+}
+.mylist{
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 826px;
+}
+.current{
+    padding-top: 10px;
+    clear: both;
+}
+.current_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
+.inputBody{
+    clear:both;
+}
+.left_input{
+    float: left;
+    width: 89%;
+}
+.middlePicture{
+    width: 50px;
+    height: 50px;
+    border: none;
+    overflow: hidden;
+}
+.currentBody{
+    overflow-y: auto;
+}
+.currentBody::-webkit-scrollbar{
+    display:none
+}
+.friend{
+    padding-top: 10px;
+    clear: both;
+}
+.friendBody{
+    overflow-y: auto;
+}
+.friendBody::-webkit-scrollbar{
+    display: none;
+}
+.friend_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
+.homeFriend{
+    padding-top: 10px;
+    clear: both;
+}
+.homeFriendBody{
+    overflow-y: auto;
+}
+.homeFriendBody::-webkit-scrollbar{
+    display: none;
+}
+.homeFriend_list{
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    margin-right: 10px;
+    float:left;
+}
+
+
+.sender{
+    clear:both;
+}
+.sender div:nth-of-type(1){
+    float: left;
+}
+.sender div:nth-of-type(2){
+    background-color: rgb(229, 229, 229);
+    float: left;
+    margin: 0 20px 10px 15px;
+    padding: 10px 10px 10px 0px;
+    border-radius:7px;
+}
+
+.receiver div:first-child img,
+.sender div:first-child img{
+    width:50px;
+    height: 50px;
+}
+
+.receiver{
+    clear:both;
+}
+.receiver div:nth-child(1){
+    float: right;
+}
+.receiver div:nth-of-type(2){
+    float:right;
+    background-color: rgb(18, 183, 245);
+    margin: 0 10px 10px 20px;
+    padding: 10px 0px 10px 10px;
+    border-radius:7px;
+}
+
+.left_triangle{
+    height:0px;  
+    width:0px;  
+    border-width:8px;  
+    border-style:solid;  
+    border-color:transparent rgb(229, 229, 229) transparent transparent;  
+    position: relative;
+    left:-16px;
+    top:3px;
+}
+
+.right_triangle{
+    height:0px;  
+    width:0px;  
+    border-width:8px;  
+    border-style:solid;  
+    border-color:transparent transparent transparent rgb(18, 183, 245);  
+    position: relative;
+    right:-16px;
+    top:3px;
+}

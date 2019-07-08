@@ -1,8 +1,5 @@
 package com.pblithe.rizhi.model;
 
-import javax.persistence.Entity;
-
-@Entity
 public class Friend {
 
     private Integer owner_id;
