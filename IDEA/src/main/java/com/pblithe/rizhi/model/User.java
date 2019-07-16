@@ -1,14 +1,10 @@
 package com.pblithe.rizhi.model;
 
 import javax.persistence.*;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import java.io.Serializable;
 
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name="user_id")
@@ -18,6 +14,7 @@ public class User {
     private String user_name;     //用户名称
     private String user_password; //用户密码
     private String daily_picture;//用户头像
+    private String profile;//个人简介
 
     public Integer getUser_id() {
         return user_id;
@@ -57,5 +54,13 @@ public class User {
 
     public void setDaily_picture(String daily_picture) {
         this.daily_picture = daily_picture;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }

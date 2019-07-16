@@ -52,24 +52,12 @@ public class UserController {
                 List<Daily> daily = dailyService.findFriendDaily(friendList.get(i).getFriend_id());
                 dailyList.addAll(daily);
             }
-            Collections.sort(dailyList, new Comparator<Daily>(){
-                /*
-                 * int compare(Person p1, Person p2) 返回一个基本类型的整型，
-                 * 返回负数表示：p1 小于p2，
-                 * 返回0 表示：p1和p2相等，
-                 * 返回正数表示：p1大于p2
-                 */
-                public int compare(Daily d1, Daily d2) {
-                    //按照Person的年龄进行升序排列
-                    if(d1.getDaily_id() < d2.getDaily_id()){
-                        return 1;
-                    }
-                    if(d1.getDaily_id() == d2.getDaily_id()){
-                        return 0;
-                    }
-                    return -1;
-                }
-            });
+            mysort(dailyList);
+            /**设置**/
+            for(int i=0;i<dailyList.size();i++){
+                String picture_path = "img/"+dailyList.get(i).getDaily_picture();
+                dailyList.get(i).setDaily_picture(picture_path);
+            }
             for(int i=0;i<dailyList.size();i++) {
                 List<Comment> comments = commentService.findComments(dailyList.get(i).getDaily_id());
                 dailyList.get(i).setComments(comments);
@@ -79,6 +67,8 @@ public class UserController {
             session.setAttribute("USER_SESSION", user);
 
             model.addAttribute("friendCount", friendList.size());
+            String user_picture = "img/"+user.getDaily_picture();
+            model.addAttribute("user_picture",user_picture);
             // 跳转到主页面
             return "home";
             //return "redirect:student/daily/list.action";   //有输出查询内容
@@ -115,5 +105,19 @@ public class UserController {
     @RequestMapping(value = "/login.action", method = RequestMethod.GET)
     public String toLogin() {
         return "login";
+    }
+
+    public void mysort(List dailyList){
+        Collections.sort(dailyList, new Comparator<Daily>(){
+            public int compare(Daily d1, Daily d2) {
+                if(d1.getDaily_id() < d2.getDaily_id()){
+                    return 1;
+                }
+                if(d1.getDaily_id() == d2.getDaily_id()){
+                    return 0;
+                }
+                return -1;
+            }
+        });
     }
 }
