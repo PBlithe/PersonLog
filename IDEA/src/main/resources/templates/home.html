@@ -35,12 +35,6 @@
         }
     </style>
 
-
-    <script>
-        var pictureUrl = "img/"+'${picturexx}';
-        console.log(pictureUrl);
-        document.getElementById("picture").src = pictureUrl;
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -236,7 +230,7 @@
                     </div>
                 </div>
 
-                <div class="row themeColor commentBody" id="bc${daily.daily_id}">
+                <div class="row themeColor commentBody" th:id="'bc'+${daily.daily_id}">
                     <div th:each="comment,iterStat: ${daily.comments}" class="commentDiv">
                         <span class="user hand">${comment.user_name}&nbsp;&nbsp;:&nbsp;&nbsp;</span>
                         <span class="comment hand">${comment.com_detail}</span>
@@ -244,9 +238,9 @@
                 </div>
 
                 <div class=" input-group mb-3"style="margin-top:5px;">
-                    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="请输入想发送的内容..." id="c${daily.daily_id}"/>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="请输入想发送的内容..." th:id="'c'+${daily.daily_id}"/>
                     <div class = "input-group-append">
-                        <button class="btn btn-success" type="button" onclick="sendComment(${daily.daily_id})" >发送</button>
+                        <button class="btn btn-success" type="button" onclick="sendComment(this.id)" th:id="${daily.daily_id}" >发送</button>
                     </div>
                 </div>
 

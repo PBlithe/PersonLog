@@ -153,7 +153,7 @@ function sendComment(daily_id){
     document.getElementById(name).value = "";
     $.ajax({
         type : "post",
-        url : "<%=basePath%>comment.action",
+        url : "comment.action",
         dataType:"json",
         data: {"daily_id":daily_id,"com_detail":com_detail},
         success : function(data){
