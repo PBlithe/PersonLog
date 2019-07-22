@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public interface DailyDao {
-    @Insert("insert into rizhidaily_author,daily_details,daily_createtime,user_id,daily_picture,privacy)values(#{daily_author},#{daily_details},#{daily_createtime},#{user_id},#{daily_picture},#{privacy})")
+    @Insert("insert into rizhi (daily_author,daily_details,daily_createtime,user_id,daily_picture,privacy)values(#{daily_author},#{daily_details},#{daily_createtime},#{user_id},#{daily_picture},#{privacy})")
     public void createDaily(Daily dadily);
     @Select("select * from rizhi where user_id = #{user_id} order by daily_id desc")
     public List<Daily> selectDailyList(Integer user_id);

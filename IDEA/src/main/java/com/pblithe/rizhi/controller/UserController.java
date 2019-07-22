@@ -64,7 +64,7 @@ public class UserController {
             }
             model.addAttribute("dailyList",dailyList);
             // 将用户对象添加到Session
-            session.setAttribute("USER_SESSION", user);
+            //session.setAttribute("USER_SESSION", user);
 
             model.addAttribute("friendCount", friendList.size());
             String user_picture = "img/"+user.getDaily_picture();

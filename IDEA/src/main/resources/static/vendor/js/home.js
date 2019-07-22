@@ -31,7 +31,7 @@ function sendDaily(){
 
     $.ajax({
         type : "post",
-        url : "<%=basePath %>daily/create.action",
+        url : "daily/create.action",
         contentType : "application/json;charset=utf-8",
         dataType : "json",
         data: JSON.stringify(json),
@@ -47,7 +47,7 @@ function sendDaily(){
 
 function showDaily(){
     document.getElementById('daily_details').innerHTML="";
-    window.location.href = "<%=basePath %>daily/list.action";
+    window.location.href = "dailylist";
 }
 
 function mysearch(){

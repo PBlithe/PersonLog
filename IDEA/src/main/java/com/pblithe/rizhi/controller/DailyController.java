@@ -56,9 +56,10 @@ public class DailyController {
 
 
     /*	     查询日志*/
-    @RequestMapping(value = "/daily/list.action")
+    @RequestMapping(value = "/dailylist")
     public String list(Model model, HttpSession session){
         User user = (User) session.getAttribute("USER_SESSION");
+        //System.out.println(user);
         List<Daily> dailyList = dailyService.findDailyList(user.getUser_id());
         model.addAttribute("dailyCount", dailyList.size());
         List<Friend> friendList = friendService.findFriendList(user.getUser_id());
@@ -68,12 +69,19 @@ public class DailyController {
             dailyList.addAll(daily);
         }
         mysort(dailyList);
+
+        for(int i=0;i<dailyList.size();i++){
+            String picture_path = "img/"+dailyList.get(i).getDaily_picture();
+            dailyList.get(i).setDaily_picture(picture_path);
+        }
         for(int i=0;i<dailyList.size();i++) {
             List<Comment> comments = commentService.findComments(dailyList.get(i).getDaily_id());
             dailyList.get(i).setComments(comments);
         }
         model.addAttribute("dailyList",dailyList);
         model.addAttribute("friendCount", friendList.size());
+        String user_picture = "img/"+user.getDaily_picture();
+        model.addAttribute("user_picture",user_picture);
         return "home";
     }
 
