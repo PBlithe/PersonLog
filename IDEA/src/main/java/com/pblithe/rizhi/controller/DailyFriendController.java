@@ -41,9 +41,15 @@ public class DailyFriendController {
             friendList.get(i).setFriendName(username);
             friendList.get(i).setFriendPicture(userpicture);
         }
+        for(int i=0;i<friendList.size();i++){
+            String picture_path = "img/"+friendList.get(i).getFriendPicture();
+            friendList.get(i).setFriendPicture(picture_path);
+        }
         model.addAttribute("friendList",friendList);
         model.addAttribute("dailyCount", dailyList.size());
         model.addAttribute("friendCount",friendList.size());
+        String user_picture = "img/"+user.getDaily_picture();
+        model.addAttribute("user_picture",user_picture);
         return "friends";
     }
 
@@ -56,9 +62,16 @@ public class DailyFriendController {
         List<Daily> dailyList = dailyService.findFriendDaily(friend_id);
         List<Friend> friendList = friendService.findFriendList(owner_id);
 
+        for(int i=0;i<dailyList.size();i++){
+            String picture_path = "/img/"+dailyList.get(i).getDaily_picture();
+            dailyList.get(i).setDaily_picture(picture_path);
+        }
+
         model.addAttribute("dailyList", dailyList);
         model.addAttribute("dailyCount", mydailyList.size());
         model.addAttribute("friendCount",friendList.size());
+        String user_picture = "/img/"+user.getDaily_picture();
+        model.addAttribute("user_picture",user_picture);
         return "friendList";
     }
 

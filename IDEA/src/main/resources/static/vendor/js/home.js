@@ -168,11 +168,11 @@ function sendComment(daily_id){
 }
 
 function dailyfriend(){
-    window.location.href = "<%=basePath %>dailyFriend.action";
+    window.location.href = "dailyFriend.action";
 }
 
 function mylist(){
-    window.location.href = "<%=basePath %>mylist.action";
+    window.location.href = "mylist.action";
 }
 
 function updateDaily(daily_id,user,id){
