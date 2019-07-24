@@ -87,6 +87,8 @@ public class DailyFriendController {
         model.addAttribute("myList", mydailyList);
         model.addAttribute("dailyCount", mydailyList.size());
         model.addAttribute("friendCount",friendList.size());
+        String user_picture = "img/"+user.getDaily_picture();
+        model.addAttribute("user_picture",user_picture);
         return "friendList";
     }
 

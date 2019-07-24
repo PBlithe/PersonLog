@@ -100,15 +100,12 @@ window.onload = function(){
     //console.log("wzs");
     $.ajax({
         type : "get",
-        url : "<%=basePath%>notice.action",
+        url : "notice.action",
         dataType:"json",
         success : function(data){
             notice(data);
         },
         error : function(){
-            /*showFriend();*/
-            /*document.getElementById('friend_id').value="";
-            $('#search').modal('hide');*/
         }
     });
 }
@@ -168,11 +165,13 @@ function sendComment(daily_id){
 }
 
 function dailyfriend(){
-    window.location.href = "dailyFriend.action";
+    console.log("错误!!!!");
+    window.location.href = "/dailyFriend.action";
 }
 
 function mylist(){
-    window.location.href = "mylist.action";
+    console.log("我的日志!!!");
+    window.location.href = "/mylist.action";
 }
 
 function updateDaily(daily_id,user,id){

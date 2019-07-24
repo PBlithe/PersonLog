@@ -12,9 +12,11 @@
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/vendor/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/vendor/css/letter.css}" rel="stylesheet"/>
+
     <script th:src="@{/vendor/css/popper.min.js}"></script>
     <script th:src="@{/vendor/js/jquery-3.4.1.min.js}"></script>
     <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/vendor/js/home.js}"></script>
 
     <style>
         body{
@@ -42,7 +44,7 @@
     <div class="collapse navbar-collapse m-auto" id="navbarColor03">
         <ul class="navbar-nav m-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/daily/list.action"><button class="btn btn-outline-success active">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
+                <a class="nav-link" th:href="@{/dailylist}"><button class="btn btn-outline-success active">&nbsp;   <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><button class="btn btn-outline-success">&nbsp;   <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;<span class="badge badge-light"></span></button></a>
@@ -143,13 +145,13 @@
                 <div class="message themeColor" th:each="mydaily,iterStat:${myList}">
                     <div class="row">
                         <div class="col-lg-1">
-                            <img class="middleHeadPicture" src="<%=basePath %>static/img/${mydaily.daily_picture}"/>
+                            <img class="middleHeadPicture" th:src="${user_picture}"/>
                         </div>
                         <div class="col-lg-11">
                             <div style="clear:both">
                                 <div style="width:84px;float:left">
                         	<span class="author" >
-                              <strong>${mydaily.daily_author}</strong>
+                              <strong th:text="${mydaily.daily_author}">${mydaily.daily_author}</strong>
                           </span>
                                 </div>
                                 <div style="margin-left:610px">
@@ -164,7 +166,7 @@
                             </div>
 
                             <div class="logContext">
-                                <pre class="text-primary" >${mydaily.daily_details}</pre>
+                                <pre class="text-primary" th:text="${mydaily.daily_details}">${mydaily.daily_details}</pre>
                             </div>
                         </div>
                     </div>
@@ -195,12 +197,12 @@
         $('#commentPopup').hide();
     });
 
-    function dailyfriend(){
-        window.location.href = "<%=basePath %>dailyFriend.action";
+    /*function dailyfriend(){
+        window.location.href = "/dailyFriend.action";
     }
     function mylist(){
-        window.location.href = "<%=basePath %>mylist.action";
-    }
+        window.location.href = "/mylist.action";
+    }*/
 </script>
 </body>
 </html>
