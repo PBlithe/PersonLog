@@ -34,7 +34,7 @@ public class LetterController {
             String username = userService.findUserName(friendList.get(i).getFriend_id());
             String userpicture = userService.findUserPicture(friendList.get(i).getFriend_id());
             friendList.get(i).setFriendName(username);
-            friendList.get(i).setFriendPicture(userpicture);
+            friendList.get(i).setFriendPicture("/img/"+userpicture);
         }
         model.addAttribute("friendList",friendList);
         return "letter";
@@ -50,14 +50,16 @@ public class LetterController {
             String username = userService.findUserName(friendList.get(i).getFriend_id());
             String userpicture = userService.findUserPicture(friendList.get(i).getFriend_id());
             friendList.get(i).setFriendName(username);
-            friendList.get(i).setFriendPicture(userpicture);
+            friendList.get(i).setFriendPicture("/img/"+userpicture);
         }
         String friendPicture = userService.findUserPicture(sendto);
-        model.addAttribute("friendPicture",friendPicture);
+        model.addAttribute("friendPicture","/img/"+friendPicture);
         model.addAttribute("friendList",friendList);
         List<Message> messages = messageService.findMessages(owner_id,sendto);
         model.addAttribute("messages",messages);
         model.addAttribute("sendto",sendto);
+        String mypicture = "/img/"+user.getDaily_picture();
+        model.addAttribute("mypicture",mypicture);
         return "letter";
     }
 }
