@@ -1,25 +1,31 @@
 $(document).ready(function(){
     $('#commentPopup').hide();
+    //alert("弹框!")
 });
-$('#comment1').focus(function(){
-    $('#commentPopup').show();
-    $('#commentPopup').focus();
-});
-$('#commentPopup').blur(function(){
-    //console.log("消失");
-    $.ajax({
-        type : "get",
-        url : "<%=basePath%>read.action",
-        dataType:"json",
-        success : function(data){
-            $("#commentPopup").html("");
-            $("#send_number").html("");
-            $('#commentPopup').hide();
-        },
-        error : function(){
-        }
-    })
-});
+$(document).ready(function() {
+
+    $('#comment1').click(function(){
+        $('#commentPopup').show();
+        $('#commentPopup').focus();
+        console.log("弹框!");
+    });
+    $('#commentPopup').blur(function(){
+        //console.log("消失");
+        $.ajax({
+            type : "get",
+            url : "/read.action",
+            dataType:"json",
+            success : function(data){
+                $("#commentPopup").html("");
+                $("#send_number").html("");
+                $('#commentPopup').hide();
+            },
+            error : function(){
+            }
+        })
+    });
+    });
+
 
 function sendDaily(){
     var daily_details =  $("#daily_details").val();
@@ -56,15 +62,10 @@ function mysearch(){
     var json = {"friend_id":friend_id};
     $.ajax({
         type : "post",
-        url : "<%=basePath %>search.action",
+        url : "/search.action",
         dataType:"json",
         data: {"friend_id":friend_id},
         success : function(data){
-            /*alert("username："+data.username+"   id："+data.id);*/
-            /*showFriend();*/
-            /*addAttribute("ssname",data.user.user_name);
-            addAttribute("sspicture",data.user.daily_picture);*/
-            /*console.log(data.user_name);*/
             showFriend(data.user_name,data.daily_picture);
         },
         error : function(){
@@ -75,7 +76,7 @@ function mysearch(){
 
 function showFriend(user_name,daily_picture){
     document.getElementById('ssname').innerHTML=user_name;
-    var path =  "<%=basePath%>static/img/";
+    var path =  "/img/";
     path = path+daily_picture;
     document.getElementById("sspicture").src = path;
 }
@@ -84,7 +85,7 @@ function addfriend(){
     var to_id = $("#friend_id").val();
     $.ajax({
         type : "post",
-        url : "<%=basePath %>addFriend.action",
+        url : "/addFriend.action",
         dataType:"json",
         data: {"to_id":to_id},
         success : function(data){
@@ -100,7 +101,7 @@ window.onload = function(){
     //console.log("wzs");
     $.ajax({
         type : "get",
-        url : "notice.action",
+        url : "/notice.action",
         dataType:"json",
         success : function(data){
             notice(data);
@@ -127,16 +128,12 @@ function agree(friend_id){
     console.log(friend_id);
     $.ajax({
         type : "post",
-        url : "<%=basePath%>agree.action",
+        url : "/agree.action",
         dataType:"json",
         data: {"friend_id":friend_id},
         success : function(data){
-            //notice(data);
         },
         error : function(){
-            /*showFriend();*/
-            /*document.getElementById('friend_id').value="";
-            $('#search').modal('hide');*/
         }
     });
 }
